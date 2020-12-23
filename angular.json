@@ -24,9 +24,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/materialize-css/dist/css/materialize.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/materialize-css/dist/js/materialize.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -120,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "HergettoFanShop"
+  "defaultProject": "HergettoFanShop",
+  "cli": {
+    "analytics": "fc87f560-d1b7-495a-9074-0ff65f940f78"
+  }
 }
