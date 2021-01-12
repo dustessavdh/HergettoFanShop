@@ -8,6 +8,8 @@ import { FrontPageComponent } from './front-page/front-page.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { AccountComponent } from './account/account.component';
+import { ProductItemComponent } from './products/product-item/product-item.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     FrontPageComponent,
     ProductsComponent,
     ProductDetailComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    AccountComponent,
+    ProductItemComponent
   ],
   imports: [
     BrowserModule,

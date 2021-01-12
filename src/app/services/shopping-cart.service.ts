@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Cart } from '../models/cart.model';
 import { Product } from '../models/product.model';
-
-type Cart = {product: Product, quantity: number};
 
 @Injectable({
   providedIn: 'root'

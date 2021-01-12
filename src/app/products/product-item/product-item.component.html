@@ -1,0 +1,10 @@
+<div class="col">
+  <div class="card" style="width: 18rem;">
+    <img src="{{ product.getImageUrl() }}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{ product.getTitle() }}</h5>
+      <p class="card-text">{{ product.getDescription() }}</p>
+      <a routerLink="{{ product.getId() }}" class="btn btn-primary">See details!</a>
+    </div>
+  </div>
+</div>
