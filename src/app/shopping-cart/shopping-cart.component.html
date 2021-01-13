@@ -1,1 +1,1 @@
-<p>shopping-cart works!</p>
+<h2 *ngFor="let productInCart of productsInCart">{{ productInCart.product.getTitle() }}, amount: {{ productInCart.quantity}}</h2>

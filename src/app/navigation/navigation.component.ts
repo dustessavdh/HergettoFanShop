@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Cart } from '../models/cart.model';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  itemsInCart: number = 0;
+
+  constructor(private cart: ShoppingCartService) { }
 
   ngOnInit(): void {
+    this.cart.cartChanged.subscribe((cart: Cart[]) => {
+      this.itemsInCart = 0;
+      cart.forEach((productInCart: Cart) => {
+        this.itemsInCart += productInCart.quantity;
+      });
+    });
   }
 
 }

@@ -13,6 +13,10 @@ export class ShoppingCartService {
 
   constructor() { }
 
+  public getItemsInCart(): Cart[] {
+    return [...this.cart];
+  }
+
   public addItemToCart(product: Product, quantity: number = 1) {
     const productIndex = this.cart.findIndex(p => p.product.getId() === product.getId());
     if (productIndex >= 0) {
