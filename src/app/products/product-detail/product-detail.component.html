@@ -1,1 +1,11 @@
-<h2 *ngIf="product">{{ product.getTitle() }}</h2>
+<div class="row">
+  <div class="col-8">
+    <h2>{{ product.getTitle() }}</h2>
+    <h6>&euro; {{ product.getPrice() }}</h6>
+    <p>{{ product.getDescription() }}</p>
+    <button type="button" class="btn btn-primary" (click)="addToCart()">Add to cart!</button>
+  </div>
+  <div class="col-4">
+    <img class="shadow img-fluid rounded" src="{{ product.getImageUrl() }}">
+  </div>
+</div>

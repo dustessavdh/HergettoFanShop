@@ -11,12 +11,12 @@ import { HttpService } from './http.service';
 export class ProductService {
 
   private products: Product[] = [
-    new Product(1, 'T-shirt met logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green']),
-    new Product(2, 'Trui met logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green']),
-    new Product(3, 'Broek met logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green']),
-    new Product(4, 'Sokken met logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green']),
-    new Product(5, 'Pet met logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green']),
-    new Product(6, 'Tas met logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green'])
+    new Product(1, 'T-shirt with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green']),
+    new Product(2, 'Trui with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green']),
+    new Product(3, 'Broek with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green']),
+    new Product(4, 'Sokken with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green']),
+    new Product(5, 'Pet with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green']),
+    new Product(6, 'Tas with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green'])
   ];
   public productsChanged = new Subject<Product[]>();
 
@@ -37,7 +37,12 @@ export class ProductService {
     // return this.http.get(`/products/${productId}`);
     return new Observable(observer => {
       const product = this.products.find(p => p.getId() === productId);
-      observer.next(product);
+      if (product) {
+        observer.next(product);
+      } else {
+        // tslint:disable-next-line: quotemark
+        observer.error("Couldn't find product!")
+      }
     })
   }
 
