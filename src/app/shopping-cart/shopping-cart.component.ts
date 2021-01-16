@@ -20,4 +20,16 @@ export class ShoppingCartComponent implements OnInit {
     });
   }
 
+  removeFromCart(item: Cart): void {
+
+  }
+
+  clearCart(): void {
+
+  }
+
+  createOrder(): void {
+
+  }
+
 }
