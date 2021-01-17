@@ -14,12 +14,18 @@ export class NavigationComponent implements OnInit {
   constructor(private cart: ShoppingCartService) { }
 
   ngOnInit(): void {
+    this.itemsInCart = this.calculateItemsInCart(this.cart.getItemsInCart());
     this.cart.cartChanged.subscribe((cart: Cart[]) => {
-      this.itemsInCart = 0;
-      cart.forEach((productInCart: Cart) => {
-        this.itemsInCart += productInCart.quantity;
-      });
+      this.itemsInCart = this.calculateItemsInCart(cart);
     });
+  }
+
+  calculateItemsInCart(cart: Cart[]): number {
+    let quantity = 0;
+    cart.forEach((cart: Cart) => {
+      quantity += cart.quantity;
+    });
+    return quantity;
   }
 
 }

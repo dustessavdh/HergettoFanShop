@@ -1,1 +1,18 @@
-<h2 *ngFor="let productInCart of productsInCart">{{ productInCart.product.getTitle() }}, amount: {{ productInCart.quantity}}</h2>
+<div class="row">
+  <div class="col-md">
+    <h2>Your Shoppingcart!</h2>
+    <p>Your shopping cart, with all the awesome items you need!</p>
+    <hr />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-sm-12">
+    <app-shopping-cart-item
+      *ngFor="let product of productsInCart"
+      [cartItem]="product"
+      (cartItemDeleted)="removeFromCart($event)"
+      (quantityChanged)="setQuantityCart($event)"
+    ></app-shopping-cart-item>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cart } from '../models/cart.model';
+import { Product } from '../models/product.model';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
@@ -21,7 +22,11 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   removeFromCart(item: Cart): void {
+    this.cart.removeFromCart(item);
+  }
 
+  setQuantityCart(item: Cart): void {
+    this.cart.setQuantityCart(item.product, item.quantity);
   }
 
   clearCart(): void {

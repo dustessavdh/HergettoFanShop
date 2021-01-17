@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import Swal from 'sweetalert2';
 import { Cart } from '../models/cart.model';
 import { Product } from '../models/product.model';
 
@@ -7,8 +8,6 @@ import { Product } from '../models/product.model';
   providedIn: 'root'
 })
 export class ShoppingCartService {
-
-  // private cart: Cart[] = [];
   public cartChanged = new Subject<Cart[]>();
 
   constructor() { }
@@ -18,7 +17,7 @@ export class ShoppingCartService {
     return [...cart];
   }
 
-  public addItemToCart(product: Product, quantity: number = 1) {
+  public addItemToCart(product: Product, quantity: number = 1): void {
     const cart: Cart[] = this.getCartFromStorage();
     const productIndex = cart.findIndex(p => p.product.getId() === product.getId());
     if (productIndex !== -1) {
@@ -28,7 +27,42 @@ export class ShoppingCartService {
     }
 
     this.setCartInStorage(cart);
-    this.cartChanged.next([...cart]);
+  }
+
+  public setQuantityCart(product: Product, quantity: number): void {
+    const cart: Cart[] = this.getCartFromStorage();
+    const index = cart.findIndex(cartItem => cartItem.product.getId() === product.getId());
+    if (index !== -1) {
+      cart[index].quantity = quantity;
+      this.setCartInStorage(cart);
+    } else {
+      Swal.fire({
+        title: 'Could not change the quantity of an item in the shopping cart',
+        text: 'An error occurred while changing the quantity of an item in the shopping cart',
+        icon: 'error',
+        showCancelButton: true,
+        confirmButtonText: 'Ok',
+        cancelButtonText: 'Probeer opnieuw'
+      });
+    }
+  }
+
+  public removeFromCart(item: Cart): void {
+    let cart: Cart[] = this.getCartFromStorage();
+    const index = cart.findIndex(cartItem => cartItem.product.getId() === item.product.getId());
+    if (index !== -1) {
+      cart.splice(index, 1);
+      this.setCartInStorage(cart);
+    } else {
+      Swal.fire({
+        title: 'Could not remove item from the shopping cart',
+        text: 'An error occurred while removing an item from the shopping cart',
+        icon: 'error',
+        showCancelButton: true,
+        confirmButtonText: 'Ok',
+        cancelButtonText: 'Probeer opnieuw'
+      });
+    }
   }
 
   private getCartFromStorage(): Cart[] {
@@ -48,9 +82,8 @@ export class ShoppingCartService {
     }
   }
 
-  private setCartInStorage(cart: Cart[]) {
+  private setCartInStorage(cart: Cart[]): void {
     localStorage.setItem('shoppingCartItems', JSON.stringify(cart));
+    this.cartChanged.next([...cart]);
   }
-
-  // TODO function for remove and clear
 }

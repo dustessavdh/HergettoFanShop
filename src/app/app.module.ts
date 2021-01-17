@@ -10,6 +10,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AccountComponent } from './account/account.component';
 import { ProductItemComponent } from './products/product-item/product-item.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { ShoppingCartItemComponent } from './shopping-cart/shopping-cart-item/shopping-cart-item.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     ProductDetailComponent,
     ShoppingCartComponent,
     AccountComponent,
-    ProductItemComponent
+    ProductItemComponent,
+    ShoppingCartItemComponent
   ],
   imports: [
     BrowserModule,
