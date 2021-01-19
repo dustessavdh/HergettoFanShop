@@ -1,13 +1,13 @@
 export class Product {
   // tslint:disable-next-line: max-line-length
-  constructor(private id: number, private title: string, private description: string, private price: number, private imageUrl: string, private sizes: string[], private colors: string[]) {}
+  constructor(private productId: number, private title: string, private description: string, private price: number, private imageUrl: string, private sizes: string[], private colors: string[], public id: string) {}
 
-  public getId(): number {
-    return this.id;
+  public getProductId(): number {
+    return this.productId;
   }
 
-  public setId(value: number) {
-    this.id = value;
+  public setProductId(value: number) {
+    this.productId = value;
   }
 
   public getTitle(): string {
@@ -64,5 +64,13 @@ export class Product {
 
   public addColor(color: string) {
     this.colors.push(color);
+  }
+
+  public getId(): string {
+    return this.id;
+  }
+
+  public setId(value: string) {
+    this.id = value;
   }
 }

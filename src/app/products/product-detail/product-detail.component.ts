@@ -22,7 +22,7 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: any) => {
       // tslint:disable-next-line: radix
-      this.productsService.getProduct(parseInt(params.id)).subscribe((product: Product) => {
+      this.productsService.getProduct(params.id).subscribe((product: Product) => {
         this.product = product;
       }, err => {
         Swal.fire({

@@ -11,12 +11,12 @@ import { HttpService } from './http.service';
 export class ProductService {
 
   private products: Product[] = [
-    new Product(1, 'T-shirt with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green']),
-    new Product(2, 'Trui with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green']),
-    new Product(3, 'Broek with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green']),
-    new Product(4, 'Sokken with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green']),
-    new Product(5, 'Pet with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green']),
-    new Product(6, 'Tas with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green'])
+    new Product(1, 'T-shirt with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green'], 'fdgxdz'),
+    new Product(2, 'Trui with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green'], 'fgbxdfgdfxgh'),
+    new Product(3, 'Broek with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green'], 'dfgdgfdfg'),
+    new Product(4, 'Sokken with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green'], 'fsdxghxfgdhfdg'),
+    new Product(5, 'Pet with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green'], 'fgshfgdhfdg'),
+    new Product(6, 'Tas with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green'], 'dfgdfgdfgfdg')
   ];
   public productsChanged = new Subject<Product[]>();
 
@@ -33,10 +33,10 @@ export class ProductService {
     });
   }
 
-  public getProduct(productId: number) {
+  public getProduct(id: string) {
     // return this.http.get(`/products/${productId}`);
     return new Observable(observer => {
-      const product = this.products.find(p => p.getId() === productId);
+      const product = this.products.find(p => p.getId() === id);
       if (product) {
         observer.next(product);
       } else {
