@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-xl">
+    <div class="title">
+      <h1>Login</h1>
+    </div>
+    <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input
+              type="email"
+              name="email"
+              ngModel
+              required email
+              placeholder="E-Mail"
+              #email="ngModel"
+              class="form-control"
+            >
+            <span class="help-block" *ngIf="!email.valid && email.touched">
+              Please enter a valid email {{email.value}} is not a valid email
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              ngModel
+              required
+              placeholder="Password"
+              #password="ngModel"
+              class="form-control"
+            >
+            <span class="help-block" *ngIf="!password.valid && password.touched">
+              Please enter a valid password
+            </span>
+          </div>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!loginForm.valid">Log in
+      </button>
+    </form>
+  </div>
+</div>
+<div class="info-row">
+  <div class="col-xl">
+    <p> If you do not have an account yet please click the signup button to sign up</p>
+    <button class="btn btn-primary" [routerLink]="['../signup']">Signup</button>
+  </div>
+</div>
