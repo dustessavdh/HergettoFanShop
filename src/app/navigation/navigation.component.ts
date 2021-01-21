@@ -23,7 +23,7 @@ export class NavigationComponent implements OnInit {
   calculateItemsInCart(cart: Cart[]): number {
     let quantity = 0;
     cart.forEach((cart: Cart) => {
-      quantity += cart.quantity;
+      quantity += cart.amount;
     });
     return quantity;
   }

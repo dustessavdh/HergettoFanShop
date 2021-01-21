@@ -37,9 +37,9 @@ export class ShoppingCartItemComponent implements OnInit {
   }
 
   changeQuantity(numberToChange: number): void {
-    this.cartItem.quantity += numberToChange;
-    if (this.cartItem.quantity < 1) {
-      if (!this.deleteCartItem()) { this.cartItem.quantity += 1; }
+    this.cartItem.amount += numberToChange;
+    if (this.cartItem.amount < 1) {
+      if (!this.deleteCartItem()) { this.cartItem.amount += 1; }
     } else {
       this.quantityChanged.emit(this.cartItem);
     }

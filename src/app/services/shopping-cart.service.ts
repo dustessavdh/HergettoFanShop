@@ -21,9 +21,9 @@ export class ShoppingCartService {
     const cart: Cart[] = this.getCartFromStorage();
     const productIndex = cart.findIndex(p => p.product.getProductId() === product.getProductId());
     if (productIndex !== -1) {
-      cart[productIndex].quantity += quantity;
+      cart[productIndex].amount += quantity;
     } else {
-      cart.push({product, quantity});
+      cart.push({product, amount: quantity});
     }
 
     this.setCartInStorage(cart);
@@ -33,7 +33,7 @@ export class ShoppingCartService {
     const cart: Cart[] = this.getCartFromStorage();
     const index = cart.findIndex(cartItem => cartItem.product.getProductId() === product.getProductId());
     if (index !== -1) {
-      cart[index].quantity = quantity;
+      cart[index].amount = quantity;
       this.setCartInStorage(cart);
     } else {
       Swal.fire({

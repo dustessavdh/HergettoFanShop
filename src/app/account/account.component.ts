@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account.component.css']
 })
 /**TODO:
- * /create maken
- * /create page vullen met input fields en knop
+ * auth interceptor toevoegen
+ * order service toevoegen api
+ * order service toevoegen front end
+ * /order maken of gewoon dat is /account
+ * simpele ui maken
  * error handling for verkeerde gegevens schrijven bij inloggen
  */
 export class AccountComponent implements OnInit {

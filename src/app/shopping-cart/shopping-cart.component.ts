@@ -26,7 +26,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   setQuantityCart(item: Cart): void {
-    this.cart.setQuantityCart(item.product, item.quantity);
+    this.cart.setQuantityCart(item.product, item.amount);
   }
 
   clearCart(): void {
