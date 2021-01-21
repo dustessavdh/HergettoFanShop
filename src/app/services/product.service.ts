@@ -1,49 +1,59 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Product } from '../models/product.model';
-import { HttpService } from './http.service';
+import { map } from 'rxjs/operators';
 
+const BACKEND_URL = environment.apiUrl + '/products/';
 @Injectable({
   providedIn: 'root'
 })
 // export class ProductService extends HttpService {
 export class ProductService {
 
-  private products: Product[] = [
-    new Product(1, 'T-shirt with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green'], 'fdgxdz'),
-    new Product(2, 'Trui with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green'], 'fgbxdfgdfxgh'),
-    new Product(3, 'Broek with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green'], 'dfgdgfdfg'),
-    new Product(4, 'Sokken with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green'], 'fsdxghxfgdhfdg'),
-    new Product(5, 'Pet with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green'], 'fgshfgdhfdg'),
-    new Product(6, 'Tas with logo', 'super vet T-shirt en zo', 20.00, 'https://via.placeholder.com/150', ['XS', 'S', 'M', 'L', 'XL'], ['Red', 'Green'], 'dfgdfgdfgfdg')
-  ];
+  private products: Product[] = [];
   public productsChanged = new Subject<Product[]>();
 
   // constructor(http: HttpClient) {
   //   super(http);
   // }
-  constructor() {
+  constructor(private httpClient: HttpClient) {
   }
 
   public getProducts() {
-    // return this.http.get(`/products`);
-    return new Observable(observer => {
-      observer.next([...this.products]);
+    return this.httpClient.get<{message: string, products: any[]}>(BACKEND_URL).pipe(map(productData => {
+      return productData.products.map(product => {
+        return new Product(
+          product.id,
+          product.title,
+          product.description,
+          product.price,
+          product.imageUrl,
+          product.sizes,
+          product.colors,
+          product._id
+        );
+      });
+    })).subscribe((products: Product[]) => {
+      this.products = products;
+      this.productsChanged.next([...products]);
     });
   }
 
-  public getProduct(id: string) {
-    // return this.http.get(`/products/${productId}`);
-    return new Observable(observer => {
-      const product = this.products.find(p => p.getId() === id);
-      if (product) {
-        observer.next(product);
-      } else {
-        // tslint:disable-next-line: quotemark
-        observer.error("Couldn't find product!")
-      }
-    })
+  public getProduct(id: string): Observable<Product> {
+    return this.httpClient.get<{message: string, product: any}>(BACKEND_URL + id).pipe(map(productData => {
+      return productData.product = new Product(
+        productData.product.id,
+        productData.product.title,
+        productData.product.description,
+        productData.product.price,
+        productData.product.imageUrl,
+        productData.product.sizes,
+        productData.product.colors,
+        productData.product._id
+      );
+    }));
   }
 
   // public createProduct(product: Product) {

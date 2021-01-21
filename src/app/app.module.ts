@@ -13,6 +13,11 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ShoppingCartItemComponent } from './shopping-cart/shopping-cart-item/shopping-cart-item.component';
 import { AccountLoginComponent } from './account/account-login/account-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ProductService } from './services/product.service';
+import { ShoppingCartService } from './services/shopping-cart.service';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -33,8 +38,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SweetAlert2Module,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ProductService, ShoppingCartService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

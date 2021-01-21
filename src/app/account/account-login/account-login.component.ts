@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { Account } from 'src/app/models/account.interface';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-account-login',
@@ -9,7 +10,7 @@ import { Account } from 'src/app/models/account.interface';
 })
 export class AccountLoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -18,8 +19,7 @@ export class AccountLoginComponent implements OnInit {
     if (form.invalid) {
       return;
     } else {
-      // this.authService.login(form.value.email, form.value.password);
-      console.log('yes!');
+      this.authService.login(form.value.email, form.value.password);
     }
   }
 }

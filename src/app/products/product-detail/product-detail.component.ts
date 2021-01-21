@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
@@ -10,9 +11,10 @@ import Swal from 'sweetalert2';
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css']
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, OnDestroy {
 
   product: Product;
+  productSubscription: Subscription;
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductService,
@@ -22,7 +24,7 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: any) => {
       // tslint:disable-next-line: radix
-      this.productsService.getProduct(params.id).subscribe((product: Product) => {
+      this.productSubscription = this.productsService.getProduct(params.id).subscribe((product: Product) => {
         this.product = product;
       }, err => {
         Swal.fire({
@@ -47,7 +49,13 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  addToCart() {
+  ngOnDestroy(): void {
+    if (this.productSubscription) {
+      this.productSubscription.unsubscribe();
+    }
+  }
+
+  addToCart(): void {
     this.cart.addItemToCart(this.product);
   }
 

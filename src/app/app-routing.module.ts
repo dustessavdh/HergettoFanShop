@@ -7,6 +7,7 @@ import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AccountComponent } from './account/account.component';
 import { AccountLoginComponent } from './account/account-login/account-login.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {path: '', component: FrontPageComponent},
@@ -16,7 +17,7 @@ const routes: Routes = [
   ]},
   {path: 'shoppingcart', component: ShoppingCartComponent},
   {path: 'account', children: [
-    {path: '', component: AccountComponent},
+    {path: '', canActivate: [AuthGuard], component: AccountComponent},
     {path: 'login', component: AccountLoginComponent}
   ]}
 ];
