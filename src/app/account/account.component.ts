@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 /**TODO:
  * /create maken
  * /create page vullen met input fields en knop
+ * error handling for verkeerde gegevens schrijven bij inloggen
  */
 export class AccountComponent implements OnInit {
 

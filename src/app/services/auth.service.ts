@@ -59,7 +59,7 @@ export class AuthService {
           });
         }
       });
-    this.router.navigate(['/login']);
+    this.router.navigateByUrl('account/login');
   }
 
   checkIfAdmin() {

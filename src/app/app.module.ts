@@ -18,6 +18,8 @@ import { ProductService } from './services/product.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
+import { AccountSignupComponent } from './account/account-signup/account-signup.component';
+import { CountryPickerComponent } from './account/country-picker/country-picker.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { AuthGuard } from './guards/auth.guard';
     AccountComponent,
     ProductItemComponent,
     ShoppingCartItemComponent,
-    AccountLoginComponent
+    AccountLoginComponent,
+    AccountSignupComponent,
+    CountryPickerComponent
   ],
   imports: [
     BrowserModule,

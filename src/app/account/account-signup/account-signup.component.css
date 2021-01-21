@@ -1,0 +1,13 @@
+form {
+  background-color: white;
+  padding: 20px;
+  box-shadow: 5px 5px 5px 5px #888888;
+}
+
+.help-block {
+  color: red;
+}
+
+.title {
+  margin-bottom: 20px;
+}

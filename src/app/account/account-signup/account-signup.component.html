@@ -1,0 +1,196 @@
+<div class="row">
+  <div class="col-xl">
+    <div class="title">
+      <h1>Signup</h1>
+    </div>
+    <form (submit)="onSignup(signupForm)" #signupForm="ngForm">
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input
+              type="email"
+              name="email"
+              ngModel
+              required email
+              placeholder="E-Mail"
+              #email="ngModel"
+              class="form-control"
+            >
+            <span class="help-block" *ngIf="!email.valid && email.touched">
+              Please enter a valid email {{email.value}} is not a valid email
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              ngModel
+              required
+              placeholder="Password"
+              #password="ngModel"
+              class="form-control"
+            >
+            <span class="help-block" *ngIf="!password.valid && password.touched">
+              Please enter a valid password
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input
+              type="text"
+              name="firstName"
+              ngModel
+              required
+              placeholder="First Name"
+              #firstName="ngModel"
+              class="form-control"
+            >
+            <span class="help-block" *ngIf="!firstName.valid && firstName.touched">
+              Please enter a valid firstName {{firstName.value}} is not a valid firstName
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input
+              type="text"
+              name="lastName"
+              ngModel
+              required
+              placeholder="Last Name"
+              #lastName="ngModel"
+              class="form-control"
+            >
+            <span class="help-block" *ngIf="!lastName.valid && lastName.touched">
+              Please enter a valid lastName {{lastName.value}} is not a valid lastName
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label for="phoneNumber">Phone number</label>
+            <input
+              type="number"
+              name="phoneNumber"
+              ngModel
+              required
+              placeholder="Phone Name"
+              #phoneNumber="ngModel"
+              class="form-control"
+            >
+            <span class="help-block" *ngIf="!phoneNumber.valid && phoneNumber.touched">
+              Please enter a valid phone number {{phoneNumber.value}} is not a valid phoneNumber
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label for="street">Street</label>
+            <input
+              type="text"
+              name="street"
+              ngModel
+              required
+              placeholder="Street"
+              #street="ngModel"
+              class="form-control"
+            >
+            <span class="help-block" *ngIf="!street.valid && street.touched">
+              Please enter a valid street {{street.value}} is not a valid street
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label for="streetNumber">Street number</label>
+            <input
+              type="text"
+              name="streetNumber"
+              ngModel
+              required
+              placeholder="Street Number"
+              #streetNumber="ngModel"
+              class="form-control"
+            >
+            <span class="help-block" *ngIf="!streetNumber.valid && streetNumber.touched">
+              Please enter a valid streetNumber {{streetNumber.value}} is not a valid streetNumber
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input
+              type="text"
+              name="city"
+              ngModel
+              required
+              placeholder="City"
+              #city="ngModel"
+              class="form-control"
+            >
+            <span class="help-block" *ngIf="!city.valid && city.touched">
+              Please enter a valid city {{city.value}} is not a valid city
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label> Country </label>
+            <app-country-picker (countrySelected)="onCountrySelected($event)"></app-country-picker>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label for="postalCode">Postal Code</label>
+            <input
+              type="text"
+              name="postalCode"
+              minlength="6"
+              maxlength="7"
+              max=""
+              ngModel
+              required
+              placeholder="Postal Code"
+              #postalCode="ngModel"
+              class="form-control"
+            >
+            <span class="help-block" *ngIf="!postalCode.valid && postalCode.touched">
+              Please enter a postal code city {{postalCode.value}} is not a valid postal code
+            </span>
+          </div>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!signupForm.valid">Signup
+      </button>
+    </form>
+  </div>
+</div>
