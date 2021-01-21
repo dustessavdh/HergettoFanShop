@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 /**TODO:
  * /create maken
  * /create page vullen met input fields en knop
- * rate limiting toevoegen aan de api
  */
 export class AccountComponent implements OnInit {
 
