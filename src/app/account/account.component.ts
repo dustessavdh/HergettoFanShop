@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account.component.css']
 })
 /**TODO:
- * order service toevoegen front end
+ * make order toevoegen in shoppingcart
  * /order maken of gewoon dat is /account
  * simpele ui maken
  * error handling for verkeerde gegevens schrijven bij inloggen

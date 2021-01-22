@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import Swal from 'sweetalert2';
 import { Account } from '../models/account.interface';
 import { environment } from 'src/environments/environment';

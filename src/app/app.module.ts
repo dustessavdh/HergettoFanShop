@@ -20,6 +20,7 @@ import { AuthService } from './services/auth.service';
 import { AccountSignupComponent } from './account/account-signup/account-signup.component';
 import { CountryPickerComponent } from './account/country-picker/country-picker.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { OrderService } from './services/order.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}, ProductService, ShoppingCartService, AuthService],
+  // tslint:disable-next-line: max-line-length
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}, ProductService, ShoppingCartService, AuthService, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
