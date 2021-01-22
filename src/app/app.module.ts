@@ -17,7 +17,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProductService } from './services/product.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { AuthService } from './services/auth.service';
-import { AuthGuard } from './guards/auth.guard';
 import { AccountSignupComponent } from './account/account-signup/account-signup.component';
 import { CountryPickerComponent } from './account/country-picker/country-picker.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
