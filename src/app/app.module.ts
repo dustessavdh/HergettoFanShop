@@ -13,13 +13,14 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ShoppingCartItemComponent } from './shopping-cart/shopping-cart-item/shopping-cart-item.component';
 import { AccountLoginComponent } from './account/account-login/account-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProductService } from './services/product.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { AccountSignupComponent } from './account/account-signup/account-signup.component';
 import { CountryPickerComponent } from './account/country-picker/country-picker.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { CountryPickerComponent } from './account/country-picker/country-picker.
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ProductService, ShoppingCartService, AuthService],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}, ProductService, ShoppingCartService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

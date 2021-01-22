@@ -6,8 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account.component.css']
 })
 /**TODO:
- * auth interceptor toevoegen
- * order service toevoegen api
  * order service toevoegen front end
  * /order maken of gewoon dat is /account
  * simpele ui maken
