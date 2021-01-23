@@ -7,12 +7,24 @@
 </div>
 
 <div class="row">
-  <div class="col-md-6 col-sm-12">
+  <div class="col-md-6 col-sm-12 cart-list">
     <app-shopping-cart-item
       *ngFor="let product of productsInCart"
       [cartItem]="product"
       (cartItemDeleted)="removeFromCart($event)"
       (quantityChanged)="setQuantityCart($event)"
     ></app-shopping-cart-item>
+  </div>
+
+  <div class="col-md-6 col-sm-12">
+    <h4>Total price: &euro; {{ totalPrice }}</h4>
+    <div class="btn-group-vertical">
+      <button type="button" class="btn btn-success" (click)="createOrder()">
+        <i class="fas fa-cart-plus"></i> Create Order
+      </button>
+      <button type="button" class="btn btn-danger" (click)="clearCart()">
+        <i class="fas fa-trash"></i> Clear shopping cart
+      </button>
+    </div>
   </div>
 </div>

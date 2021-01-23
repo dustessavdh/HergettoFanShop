@@ -19,7 +19,7 @@ export class ShoppingCartService {
 
   public addItemToCart(product: Product, quantity: number = 1): void {
     const cart: Cart[] = this.getCartFromStorage();
-    const productIndex = cart.findIndex(p => p.product.getProductId() === product.getProductId());
+    const productIndex = cart.findIndex(p => p.product.getId() === product.getId());
     if (productIndex !== -1) {
       cart[productIndex].amount += quantity;
     } else {
@@ -31,7 +31,7 @@ export class ShoppingCartService {
 
   public setQuantityCart(product: Product, quantity: number): void {
     const cart: Cart[] = this.getCartFromStorage();
-    const index = cart.findIndex(cartItem => cartItem.product.getProductId() === product.getProductId());
+    const index = cart.findIndex(cartItem => cartItem.product.getId() === product.getId());
     if (index !== -1) {
       cart[index].amount = quantity;
       this.setCartInStorage(cart);
@@ -60,9 +60,24 @@ export class ShoppingCartService {
         icon: 'error',
         showCancelButton: true,
         confirmButtonText: 'Ok',
-        cancelButtonText: 'Probeer opnieuw'
+        cancelButtonText: 'try again'
       });
     }
+  }
+
+  public clearCart(): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Are you sure you want to clear the cart?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
+    }).then(result => {
+      if (result.value) {
+        this.setCartInStorage([]);
+      }
+    });
   }
 
   private getCartFromStorage(): Cart[] {

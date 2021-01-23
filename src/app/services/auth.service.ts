@@ -35,6 +35,7 @@ export class AuthService {
     return this.adminStatusListener.asObservable();
   }
 
+  // TODO add api call
   getIsAuth() {
     return this.isAuthenticated;
   }

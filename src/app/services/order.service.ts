@@ -15,6 +15,10 @@ export class OrderService {
 
   constructor(private httpClient: HttpClient) {}
 
+  createOrder(order: any) {
+    return this.httpClient.post(BACKEND_URL, {orderProducts: order})
+  }
+
   getOrderById(orderId: string) {
     return this.httpClient.get<any>(
       BACKEND_URL + orderId);

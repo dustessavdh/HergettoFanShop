@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cart } from '../models/cart.model';
+import { OrderService } from '../services/order.service';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
@@ -10,13 +11,17 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 export class ShoppingCartComponent implements OnInit {
 
   productsInCart: Cart[] = [];
+  totalPrice: number = 0.00;
 
-  constructor(private cart: ShoppingCartService) { }
+  constructor(private cart: ShoppingCartService,
+              private orderService: OrderService) { }
 
   ngOnInit(): void {
     this.productsInCart = this.cart.getItemsInCart();
+    this.totalPrice = this.calculateTotalPrice(this.productsInCart);
     this.cart.cartChanged.subscribe((cart: Cart[]) => {
       this.productsInCart = cart;
+      this.totalPrice = this.calculateTotalPrice(cart);
     });
   }
 
@@ -29,11 +34,21 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   clearCart(): void {
-
+    this.cart.clearCart();
   }
 
   createOrder(): void {
-
+    this.orderService.createOrder(this.productsInCart).subscribe((response: any) => {
+      console.log('the respone:', response);
+    });
   }
 
+  private calculateTotalPrice(cart: Cart[]): number {
+    let totalPrice: number = 0;
+    cart.forEach(item => {
+      totalPrice += item.product.getPrice() * item.amount;
+    });
+
+    return totalPrice;
+  }
 }
