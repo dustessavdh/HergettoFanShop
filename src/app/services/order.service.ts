@@ -25,7 +25,7 @@ export class OrderService {
   }
 
   getOrders() {
-    return this.httpClient.get(BACKEND_URL);
+    return this.httpClient.get<{message: string, orders: any[]}>(BACKEND_URL);
   }
 
   getOrderUpdateListener() {

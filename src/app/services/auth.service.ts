@@ -45,7 +45,7 @@ export class AuthService {
   }
 
   me() {
-    return this.httpClient.get(BACKEND_URL + 'me')
+    return this.httpClient.get<{success: boolean, message: string, user: any, orders: any}>(BACKEND_URL + 'me');
   }
 
   createUser(customer: Account) {

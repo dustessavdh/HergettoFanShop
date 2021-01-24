@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-account',
@@ -12,10 +14,14 @@ import { Component, OnInit } from '@angular/core';
  * error handling for verkeerde gegevens schrijven bij inloggen
  */
 export class AccountComponent implements OnInit {
+  orderSubscription: Subscription;
 
-  constructor() { }
+  constructor(private orderService: OrderService) { }
 
   ngOnInit(): void {
+    this.orderSubscription = this.orderService.getOrders().subscribe(orders => {
+      console.log(orders);
+    });
   }
 
 }
