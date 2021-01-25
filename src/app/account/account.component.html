@@ -1,1 +1,130 @@
-<p>account works!</p>
+<h1>Your account</h1>
+<p>Here you can view all your orders and account details.</p>
+<hr>
+
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          Account Info
+        </button>
+      </h2>
+    </div>
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        <form *ngIf="accountInfoForm" [formGroup]="accountInfoForm">
+          <div class="form-group">
+            <label for="firstName">Firstname</label>
+            <input
+            type="text"
+            id="firstName"
+            class="form-control"
+            placeholder="firstname"
+            formControlName="firstName"
+            readonly>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Lastname</label>
+            <input
+            type="text"
+            id="lastName"
+            class="form-control"
+            placeholder="lastname"
+            formControlName="lastName"
+            readonly>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+            type="text"
+            id="email"
+            class="form-control"
+            placeholder="email@email.com"
+            formControlName="email"
+            readonly>
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">Phone number</label>
+            <input
+            type="text"
+            id="phoneNumber"
+            class="form-control"
+            placeholder="phone number"
+            formControlName="phoneNumber"
+            readonly>
+          </div>
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input
+            type="text"
+            id="country"
+            class="form-control"
+            placeholder="country"
+            formControlName="country"
+            readonly>
+          </div>
+          <div class="form-group">
+            <label for="street">Street</label>
+            <input
+            type="text"
+            id="street"
+            class="form-control"
+            placeholder="street"
+            formControlName="street"
+            readonly>
+          </div>
+          <div class="form-group">
+            <label for="streetNumber">Street number</label>
+            <input
+            type="text"
+            id="streetNumber"
+            class="form-control"
+            placeholder="streetNumber"
+            formControlName="streetNumber"
+            readonly>
+          </div>
+          <div class="form-group">
+            <label for="postalCode">Postal code</label>
+            <input
+            type="text"
+            id="postalCode"
+            class="form-control"
+            placeholder="keesv"
+            formControlName="postalCode"
+            readonly>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Orders
+        </button>
+      </h2>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+        <app-account-order-item *ngFor="let order of orders" [order]="order"></app-account-order-item>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Admin orders
+        </button>
+      </h2>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+        <app-account-order-item *ngFor="let adminOrder of adminOrders" [order]="adminOrder"></app-account-order-item>
+      </div>
+    </div>
+  </div>
+</div>

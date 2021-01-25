@@ -8,6 +8,7 @@ import { AccountComponent } from './account/account.component';
 import { AccountLoginComponent } from './account/account-login/account-login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AccountSignupComponent } from './account/account-signup/account-signup.component';
+import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
 
 const routes: Routes = [
   {path: '', component: FrontPageComponent},
@@ -18,6 +19,8 @@ const routes: Routes = [
   {path: 'shoppingcart', component: ShoppingCartComponent},
   {path: 'account', children: [
     {path: '', canActivate: [AuthGuard], component: AccountComponent},
+    {path: 'orders', canActivate: [AuthGuard], component: AccountComponent},
+    {path: 'orders/:id', canActivate: [AuthGuard], component: OrderDetailComponent},
     {path: 'login', component: AccountLoginComponent},
     {path: 'signup', component: AccountSignupComponent}
   ]}

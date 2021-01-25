@@ -3,9 +3,13 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import Swal from 'sweetalert2';
+import { map } from 'rxjs/operators';
 import { Account } from '../models/account.interface';
 import { environment } from 'src/environments/environment';
 import { AuthData } from '../models/auth-date.interface';
+import { Order } from '../models/order.model';
+import { Cart } from '../models/cart.model';
+import { Product } from '../models/product.model';
 
 const BACKEND_URL = environment.apiUrl + '/user/';
 
@@ -45,7 +49,32 @@ export class AuthService {
   }
 
   me() {
-    return this.httpClient.get<{success: boolean, message: string, user: any, orders: any}>(BACKEND_URL + 'me');
+    return this.httpClient.get<{success: boolean, message: string, user: any, orders: any}>(BACKEND_URL + 'me').pipe(map(response => {
+      return {user: response.user, orders: response.orders.map(order => {
+        return new Order(
+          order._id,
+          order.createdAt,
+          order.delivered,
+          order.paid,
+          order.userId,
+          order.products.map(product => {
+            return new Cart(
+              new Product(
+                1,
+                product.title,
+                product.description,
+                product.price,
+                product.imageUrl,
+                product.sizes,
+                product.colors,
+                product._id
+              ),
+              product.amount
+            );
+          })
+        );
+      })};
+    }));
   }
 
   createUser(customer: Account) {
@@ -67,6 +96,7 @@ export class AuthService {
     return this.httpClient.get<any>(
       BACKEND_URL + 'check-admin'
     ).subscribe(response => {
+      console.log('wow:', response);
       const isAdmin = response.admin;
       this.isAdmin = isAdmin;
       console.log(this.isAdmin);
@@ -100,7 +130,7 @@ export class AuthService {
         const now = new Date();
         const expirationData = new Date(now.getTime() + expiresInDuration * 1000);
         this.saveAuthData(token, expirationData)
-        this.router.navigate(['/']);
+        this.router.navigate(['/account']);
       }
     });
   }

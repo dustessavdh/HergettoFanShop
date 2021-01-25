@@ -21,6 +21,9 @@ import { AccountSignupComponent } from './account/account-signup/account-signup.
 import { CountryPickerComponent } from './account/country-picker/country-picker.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { OrderService } from './services/order.service';
+import { AccountOrderItemComponent } from './account/account-order-item/account-order-item.component';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { OrderService } from './services/order.service';
     ShoppingCartItemComponent,
     AccountLoginComponent,
     AccountSignupComponent,
-    CountryPickerComponent
+    CountryPickerComponent,
+    AccountOrderItemComponent,
+    OrdersComponent,
+    OrderDetailComponent
   ],
   imports: [
     BrowserModule,
