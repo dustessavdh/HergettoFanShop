@@ -1,1 +1,11 @@
-<p>order-detail works!</p>
+<h2>Your order!</h2>
+<p *ngIf="order">see your order: '{{ order._id }} in detail!'</p>
+<hr />
+
+<div class="row">
+  <div *ngIf="order" class="col-12">
+    <p>paid: {{ order.paid? 'yes!' : 'no!' }}</p>
+    <p>delivered: {{ order.delivered? 'yes!' : 'no!' }}</p>
+
+  </div>
+</div>

@@ -8,7 +8,7 @@ import { Order } from 'src/app/models/order.model';
 })
 export class AccountOrderItemComponent implements OnInit {
   @Input() order: Order;
-
+  @Input() isAdmin: boolean;
   constructor() { }
 
   ngOnInit(): void {

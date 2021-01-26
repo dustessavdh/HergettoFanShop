@@ -123,7 +123,7 @@
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
       <div class="card-body">
-        <app-account-order-item *ngFor="let adminOrder of adminOrders" [order]="adminOrder"></app-account-order-item>
+        <app-account-order-item *ngFor="let adminOrder of adminOrders" [order]="adminOrder" [isAdmin]="isAdmin"></app-account-order-item>
       </div>
     </div>
   </div>

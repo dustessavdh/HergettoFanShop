@@ -24,8 +24,30 @@ export class OrderService {
   }
 
   getOrderById(orderId: string) {
-    return this.httpClient.get<any>(
-      BACKEND_URL + orderId);
+    return this.httpClient.get<{order: any, user: any}>(BACKEND_URL + orderId).pipe(map(response => {
+      return {user: response.user, order: new OrderM(
+        response.order._id,
+        response.order.createdAt,
+        response.order.delivered,
+        response.order.paid,
+        response.order.userId,
+        response.order.products.map(product => {
+          return new Cart(
+            new Product(
+              1,
+              product.title,
+              product.description,
+              product.price,
+              product.imageUrl,
+              product.sizes,
+              product.colors,
+              product._id
+            ),
+            product.amount
+          );
+        })
+      )};
+    }));
   }
 
   getOrders() {

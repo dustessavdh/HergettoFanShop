@@ -33,13 +33,11 @@ export class AccountComponent implements OnInit {
       if (res) {
         this.orderSubscription = this.orderService.getOrders().subscribe(orders => {
           this.adminOrders = orders;
-          console.log('admin:', orders);
         });
       }
     });
 
     this.authService.me().subscribe(response => {
-      console.log(response);
       this.accountInfoForm = new FormGroup({
         firstName: new FormControl(response.user.firstName, Validators.required),
         lastName: new FormControl(response.user.lastName, Validators.required),
