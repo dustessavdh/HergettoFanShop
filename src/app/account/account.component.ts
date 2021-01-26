@@ -11,6 +11,7 @@ import { OrderService } from '../services/order.service';
   styleUrls: ['./account.component.css']
 })
 /**TODO:
+ * pagina om producten toe te voegen.
  * simpele ui maken
  * error handling for verkeerde gegevens schrijven bij inloggen
  */
@@ -19,15 +20,22 @@ export class AccountComponent implements OnInit {
   meSubscription: Subscription;
   accountInfoForm: FormGroup;
   orders: Order[];
+  isAdmin: boolean;
   adminOrders: Order[];
 
   constructor(private orderService: OrderService,
               private authService: AuthService) { }
 
+
   ngOnInit(): void {
-    this.orderSubscription = this.orderService.getOrders().subscribe(orders => {
-      this.adminOrders = orders;
-      console.log(orders);
+    this.authService.getAdminStatusListener().subscribe(res => {
+      this.isAdmin = res;
+      if (res) {
+        this.orderSubscription = this.orderService.getOrders().subscribe(orders => {
+          this.adminOrders = orders;
+          console.log('admin:', orders);
+        });
+      }
     });
 
     this.authService.me().subscribe(response => {

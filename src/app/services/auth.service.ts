@@ -96,29 +96,28 @@ export class AuthService {
     return this.httpClient.get<any>(
       BACKEND_URL + 'check-admin'
     ).subscribe(response => {
-      console.log('wow:', response);
       const isAdmin = response.admin;
       this.isAdmin = isAdmin;
-      console.log(this.isAdmin);
       if (isAdmin) {
         const expiresInDuration = 25000;
-        this.setAuthTimer(expiresInDuration)
+        this.setAuthTimer(expiresInDuration);
         this.isAdmin = true;
         this.adminStatusListener.next(true);
         const now = new Date();
         const expirationData = new Date(now.getTime() + expiresInDuration * 1000);
-        this.saveAdminData(isAdmin, expirationData)
+        this.saveAdminData(isAdmin, expirationData);
       } else {
         this.isAdmin = false;
+        localStorage.setItem('isAdmin', isAdmin);
         this.adminStatusListener.next(false);
       }
-    })
+    });
   }
 
   login(email: string, password: string) {
     const authData: AuthData = {email: email, password: password};
     this.httpClient.post<{token: string, expiresIn: number}>(BACKEND_URL + 'login', authData)
-    .subscribe(response => {
+    .subscribe(async response => {
       const token = response.token;
       this.token = token;
       if (token) {
@@ -129,7 +128,7 @@ export class AuthService {
         this.authStatusListener.next(true);
         const now = new Date();
         const expirationData = new Date(now.getTime() + expiresInDuration * 1000);
-        this.saveAuthData(token, expirationData)
+        this.saveAuthData(token, expirationData);
         this.router.navigate(['/account']);
       }
     });
