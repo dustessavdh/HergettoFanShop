@@ -37,6 +37,13 @@ export class AccountComponent implements OnInit {
       }
     });
 
+    if (this.authService.getIsAdmin()) {
+      this.isAdmin = true;
+      this.orderSubscription = this.orderService.getOrders().subscribe(orders => {
+        this.adminOrders = orders;
+      });
+    }
+
     this.authService.me().subscribe(response => {
       this.accountInfoForm = new FormGroup({
         firstName: new FormControl(response.user.firstName, Validators.required),

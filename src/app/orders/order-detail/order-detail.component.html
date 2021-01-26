@@ -4,8 +4,15 @@
 
 <div class="row">
   <div *ngIf="order" class="col-12">
-    <p>paid: {{ order.paid? 'yes!' : 'no!' }}</p>
-    <p>delivered: {{ order.delivered? 'yes!' : 'no!' }}</p>
+    <p>Paid: {{ order.paid? 'yes!' : 'no!' }}</p>
+    <p>Delivered: {{ order.delivered? 'yes!' : 'no!' }}</p>
+    <p>Amount of products: {{ amountProducts }}</p>
+    <p>Total price: &euro; {{ totalPrice }}</p>
+  </div>
+</div>
+
+<div *ngIf="" class="row">
+  <div class="col-12">
 
   </div>
 </div>

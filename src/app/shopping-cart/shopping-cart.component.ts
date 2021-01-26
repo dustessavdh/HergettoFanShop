@@ -39,6 +39,7 @@ export class ShoppingCartComponent implements OnInit {
 
   createOrder(): void {
     this.orderService.createOrder(this.productsInCart).subscribe((response: any) => {
+      // TODO
       console.log('the respone:', response);
     });
   }

@@ -24,6 +24,9 @@ import { OrderService } from './services/order.service';
 import { AccountOrderItemComponent } from './account/account-order-item/account-order-item.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
+import { OrderDetailItemComponent } from './orders/order-detail/order-detail-item/order-detail-item.component';
+import { OrderDetailEditComponent } from './orders/order-detail/order-detail-edit/order-detail-edit.component';
+import { ProductsAddComponent } from './products/products-add/products-add.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { OrderDetailComponent } from './orders/order-detail/order-detail.compone
     CountryPickerComponent,
     AccountOrderItemComponent,
     OrdersComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    OrderDetailItemComponent,
+    OrderDetailEditComponent,
+    ProductsAddComponent
   ],
   imports: [
     BrowserModule,
