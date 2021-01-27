@@ -1,6 +1,6 @@
 export class Product {
   // tslint:disable-next-line: max-line-length
-  constructor(private productId: number, private title: string, private description: string, private price: number, private imageUrl: string, private sizes: string[], private colors: string[], public id: string) {}
+  constructor(private productId: number, private title: string, private description: string, private price: number, private imageUrl: string, private sizes: string[], private colors: string[], public id: string = '') {}
 
   public getProductId(): number {
     return this.productId;

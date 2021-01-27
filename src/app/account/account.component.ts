@@ -10,11 +10,6 @@ import { OrderService } from '../services/order.service';
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css']
 })
-/**TODO:
- * pagina om producten toe te voegen.
- * simpele ui maken
- * error handling for verkeerde gegevens schrijven bij inloggen
- */
 export class AccountComponent implements OnInit {
   orderSubscription: Subscription;
   meSubscription: Subscription;
@@ -60,4 +55,7 @@ export class AccountComponent implements OnInit {
     });
   }
 
+  logout(): void {
+    this.authService.logout();
+  }
 }

@@ -80,6 +80,10 @@ export class ShoppingCartService {
     });
   }
 
+  public clearCartWithoutAlert(): void {
+    this.setCartInStorage([]);
+  }
+
   private getCartFromStorage(): Cart[] {
     try {
       const rawCart = localStorage.getItem('shoppingCartItems');

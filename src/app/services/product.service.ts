@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Product } from '../models/product.model';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 const BACKEND_URL = environment.apiUrl + '/products/';
 @Injectable({
@@ -18,7 +19,8 @@ export class ProductService {
   // constructor(http: HttpClient) {
   //   super(http);
   // }
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+              private router: Router) {
   }
 
   public getProducts() {
@@ -56,9 +58,15 @@ export class ProductService {
     }));
   }
 
-  // public createProduct(product: Product) {
-  //   return this.http.post(`${this.host}/products`, product);
-  // }
+  addProduct(product: Product) {
+    this.httpClient.post<{message: string; productId: string}>(BACKEND_URL, product).subscribe(responseData => {
+        const id = responseData.productId;
+        product.id = id;
+        this.products.push(product);
+        this.productsChanged.next([...this.products]);
+        this.router.navigateByUrl('/products/' + id);
+      });
+  }
 
   // public updateProduct(productId: number, product: Product) {
   //   return this.http.put(`${this.host}/products/${productId}`, product);

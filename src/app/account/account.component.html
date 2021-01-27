@@ -129,6 +129,10 @@
   </div>
 </div>
 
-<button *ngIf="isAdmin" type="button" class="btn btn-success" routerLink="/products/add">
+<button *ngIf="isAdmin" type="button" class="btn btn-success mr-2" routerLink="/products/add">
   <i class="fas fa-plus"></i> Add a product
+</button>
+
+<button  type="button" class="btn btn-danger mr-2" (click)="logout()">
+  logout
 </button>

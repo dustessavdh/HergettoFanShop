@@ -44,6 +44,7 @@ export class ShoppingCartComponent implements OnInit {
   createOrder(): void {
     if (this.authService.getIsAuth()) {
       this.orderService.createOrder(this.productsInCart).subscribe((response: any) => {
+        this.cart.clearCartWithoutAlert();
         this.router.navigateByUrl('/account/orders/' + response._id);
       });
     } else {

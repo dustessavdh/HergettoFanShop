@@ -146,22 +146,10 @@ export class AuthService {
       this.isAuthenticated = true;
       this.setAuthTimer(expiresIn / 1000);
       this.authStatusListener.next(true);
+      this.checkIfAdmin();
     }
   }
 
-  autoAdminUser() {
-    const adminInformation = this.getAdminData();
-    if(!adminInformation) {
-      return;
-    }
-    const now = new Date();
-    const expiresIn = adminInformation.expirationData.getTime() - now.getTime();
-    if(expiresIn > 0) {
-      this.isAdmin = true;
-      this.setAuthTimer(expiresIn / 1000);
-      this.adminStatusListener.next(true);
-  }
-}
 
   logout() {
     this.token = null;
@@ -171,7 +159,7 @@ export class AuthService {
     this.adminStatusListener.next(false);
     clearTimeout(this.tokenTimer);
     this.clearAuthData();
-    this.router.navigate(['/']);
+    this.router.navigateByUrl('/account/login');
   }
 
   private setAuthTimer(duration: number) {
