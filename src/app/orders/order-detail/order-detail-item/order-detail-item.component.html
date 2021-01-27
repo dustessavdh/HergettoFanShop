@@ -1,1 +1,8 @@
-<p>order-detail-item works!</p>
+<div *ngIf="order" class="row">
+  <div *ngIf="order" class="col-12">
+    <p>Paid: {{ order.paid? 'yes!' : 'no!' }}</p>
+    <p>Delivered: {{ order.delivered? 'yes!' : 'no!' }}</p>
+    <p>Amount of products: {{ amountProducts }}</p>
+    <p>Total price: &euro; {{ totalPrice }}</p>
+  </div>
+</div>

@@ -11,6 +11,7 @@ import { AccountSignupComponent } from './account/account-signup/account-signup.
 import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
 import { AdminGuard } from './guards/admin.guard';
 import { ProductsAddComponent } from './products/products-add/products-add.component';
+import { OrderDetailEditComponent } from './orders/order-detail/order-detail-edit/order-detail-edit.component';
 
 const routes: Routes = [
   {path: '', component: FrontPageComponent},
@@ -24,7 +25,7 @@ const routes: Routes = [
     {path: '', canActivate: [AuthGuard], component: AccountComponent},
     {path: 'orders', canActivate: [AuthGuard], component: AccountComponent},
     {path: 'orders/:id', canActivate: [AuthGuard], component: OrderDetailComponent},
-    {path: 'orders/:id/edit', canActivate: [AuthGuard, AdminGuard], component: OrderDetailComponent},
+    {path: 'orders/:id/edit', canActivate: [AuthGuard, AdminGuard], component: OrderDetailEditComponent},
     {path: 'login', component: AccountLoginComponent},
     {path: 'signup', component: AccountSignupComponent}
   ]}

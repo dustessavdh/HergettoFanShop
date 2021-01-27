@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Cart } from '../models/cart.model';
+import { AuthService } from '../services/auth.service';
 import { OrderService } from '../services/order.service';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 
@@ -14,7 +16,9 @@ export class ShoppingCartComponent implements OnInit {
   totalPrice: number = 0.00;
 
   constructor(private cart: ShoppingCartService,
-              private orderService: OrderService) { }
+              private orderService: OrderService,
+              private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.productsInCart = this.cart.getItemsInCart();
@@ -38,10 +42,13 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   createOrder(): void {
-    this.orderService.createOrder(this.productsInCart).subscribe((response: any) => {
-      // TODO
-      console.log('the respone:', response);
-    });
+    if (this.authService.getIsAuth()) {
+      this.orderService.createOrder(this.productsInCart).subscribe((response: any) => {
+        this.router.navigateByUrl('/account/orders/' + response._id);
+      });
+    } else {
+      this.router.navigateByUrl('/account/login');
+    }
   }
 
   private calculateTotalPrice(cart: Cart[]): number {

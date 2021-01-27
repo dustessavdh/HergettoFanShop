@@ -2,17 +2,4 @@
 <p *ngIf="order">see your order: '{{ order._id }} in detail!'</p>
 <hr />
 
-<div class="row">
-  <div *ngIf="order" class="col-12">
-    <p>Paid: {{ order.paid? 'yes!' : 'no!' }}</p>
-    <p>Delivered: {{ order.delivered? 'yes!' : 'no!' }}</p>
-    <p>Amount of products: {{ amountProducts }}</p>
-    <p>Total price: &euro; {{ totalPrice }}</p>
-  </div>
-</div>
-
-<div *ngIf="" class="row">
-  <div class="col-12">
-
-  </div>
-</div>
+<app-order-detail-item *ngIf="order" [order]="order"></app-order-detail-item>

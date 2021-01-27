@@ -1,1 +1,14 @@
-<p>order-detail-edit works!</p>
+<h2>Your order!</h2>
+<p *ngIf="order">see your order: '{{ order._id }} in detail!'</p>
+<hr />
+
+<app-order-detail-item *ngIf="order" [order]="order"></app-order-detail-item>
+
+<div class="btn-toolbar " role="toolbar" aria-label="Toolbar">
+  <div class="btn-group mr-2" role="group" aria-label="First group">
+    <button type="button" class="btn btn-primary" (click)="changePaid()">Change paid</button>
+  </div>
+  <div class="btn-group" role="group" aria-label="Second group">
+    <button type="button" class="btn btn-primary" (click)="changeDelivered()">Change delivered</button>
+  </div>
+</div>

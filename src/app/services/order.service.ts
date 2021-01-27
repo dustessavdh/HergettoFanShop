@@ -25,56 +25,14 @@ export class OrderService {
 
   getOrderById(orderId: string) {
     return this.httpClient.get<{order: any, user: any}>(BACKEND_URL + orderId).pipe(map(response => {
-      return {user: response.user, order: new OrderM(
-        response.order._id,
-        response.order.createdAt,
-        response.order.delivered,
-        response.order.paid,
-        response.order.userId,
-        response.order.products.map(product => {
-          return new Cart(
-            new Product(
-              1,
-              product.title,
-              product.description,
-              product.price,
-              product.imageUrl,
-              product.sizes,
-              product.colors,
-              product._id
-            ),
-            product.amount
-          );
-        })
-      )};
+      return {user: response.user, order: this.responseToOrder(response.order)};
     }));
   }
 
   getOrders() {
     return this.httpClient.get<{message: string, orders: any[]}>(BACKEND_URL).pipe(map(response => {
       return response.orders.map(order => {
-        return new OrderM(
-          order._id,
-          order.createdAt,
-          order.delivered,
-          order.paid,
-          order.userId,
-          order.products.map(product => {
-            return new Cart(
-              new Product(
-                1,
-                product.title,
-                product.description,
-                product.price,
-                product.imageUrl,
-                product.sizes,
-                product.colors,
-                product._id
-              ),
-              product.amount
-            );
-          })
-        );
+        return this.responseToOrder(order);
       });
     }));
   }
@@ -88,10 +46,39 @@ export class OrderService {
   }
 
   togglePaid(orderId: string) {
-    return this.httpClient.patch(BACKEND_URL + 'togglepaid/' + orderId, {})
+    return this.httpClient.patch<{success: boolean, order: any}>(BACKEND_URL + 'togglepaid/' + orderId, {}).pipe(map(response => {
+      return {success: response.success, order: this.responseToOrder(response.order)};
+    }));
   }
 
   toggleDelivered(orderId: string) {
-    return this.httpClient.patch(BACKEND_URL + 'toggledelivery/' + orderId, {})
+    return this.httpClient.patch<{success: boolean, order: any}>(BACKEND_URL + 'toggledelivery/' + orderId, {}).pipe(map(response => {
+      return {success: response.success, order: this.responseToOrder(response.order)};
+    }));
+  }
+
+  private responseToOrder(order: any): OrderM {
+    return new OrderM(
+      order._id,
+      order.createdAt,
+      order.delivered,
+      order.paid,
+      order.userId,
+      order.products.map(product => {
+        return new Cart(
+          new Product(
+            1,
+            product.title,
+            product.description,
+            product.price,
+            product.imageUrl,
+            product.sizes,
+            product.colors,
+            product._id
+          ),
+          product.amount
+        );
+      })
+    );
   }
 }

@@ -43,18 +43,4 @@ export class ShoppingCartItemComponent implements OnInit {
       this.quantityChanged.emit(this.cartItem);
     }
   }
-
-  // increaseQuantity(): void {
-  //   this.cartItem.quantity += 1;
-  //   this.quantityChanged.emit(this.cartItem);
-  // }
-
-  // decreaseQuantity(): void {
-  //   this.cartItem.quantity -= 1;
-  //   if (this.cartItem.quantity < 1) {
-  //     this.deleteCartItem();
-  //   } else {
-  //     this.quantityChanged.emit(this.cartItem);
-  //   }
-  // }
 }
