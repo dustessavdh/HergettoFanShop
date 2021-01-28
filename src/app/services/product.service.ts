@@ -68,6 +68,29 @@ export class ProductService {
       });
   }
 
+  updateProduct(product: Product) {
+    this.httpClient
+      .put(BACKEND_URL + product.getId(), product)
+      .subscribe(response => {
+        console.log("test");
+        const updatedProducts = [...this.products];
+        const oldProductIndex = updatedProducts.findIndex(p => p.getId() === product.getId());
+        updatedProducts[oldProductIndex] = product;
+        this.products = updatedProducts;
+        this.productsChanged.next([...this.products]);
+        this.router.navigateByUrl('products/' + product.getId());
+      });
+  }
+
+  deleteProduct(productId: string) {
+    this.httpClient.delete(BACKEND_URL+ productId)
+      .subscribe(() => {
+        const updatedProducts = this.products.filter(product => product.id !== productId);
+        this.products = updatedProducts;
+        this.productsChanged.next([...this.products]);
+      });
+  }
+
   // public updateProduct(productId: number, product: Product) {
   //   return this.http.put(`${this.host}/products/${productId}`, product);
   // }

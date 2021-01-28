@@ -1,5 +1,6 @@
-<h2>Your Shoppingcart!</h2>
-<p>Your shopping cart, with all the awesome items you need!</p>
+<h2 *ngIf="!editProduct">Add a product!</h2>
+<h2 *ngIf="editProduct">Edit a product!</h2>
+<p>Edit/add a product!</p>
 <hr />
 
 <div class="row">
@@ -42,10 +43,24 @@
         formControlName="imageUrl">
       </div>
       <button
+        *ngIf="!editProduct"
         type="submit"
-        class="btn btn-primary">
+        class="btn btn-success">
         <i class="fas fa-plus"></i> add product
       </button>
+      <button
+        *ngIf="editProduct"
+        type="submit"
+        class="btn btn-primary">
+        <i class="fas fa-edit"></i> edit product
+      </button>
     </form>
+
+    <button
+    *ngIf="editProduct"
+    class="btn btn-danger mt-2"
+    (click)="deleteProduct()">
+    <i class="fas fa-trash"></i> Delete product
+    </button>
   </div>
 </div>

@@ -18,7 +18,8 @@ const routes: Routes = [
   {path: 'products', children: [
     {path: '', component: ProductsComponent},
     {path: 'add', canActivate: [AuthGuard, AdminGuard], component: ProductsAddComponent},
-    {path: ':id', component: ProductDetailComponent}
+    {path: ':id', component: ProductDetailComponent},
+    {path: ':id/edit', canActivate: [AuthGuard, AdminGuard], component: ProductsAddComponent}
   ]},
   {path: 'shoppingcart', component: ShoppingCartComponent},
   {path: 'account', children: [
